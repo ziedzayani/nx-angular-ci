@@ -1,6 +1,6 @@
 pipeline {
     agent none
-    tools { nodejs "nodejs" }
+    tools { node "nodejs" }
     stages {
         stage('Pipeline') {
             parallel {
