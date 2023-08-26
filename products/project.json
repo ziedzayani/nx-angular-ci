@@ -1,0 +1,42 @@
+{
+  "name": "products",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "products/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/products",
+        "main": "products/src/index.ts",
+        "tsConfig": "products/tsconfig.lib.json",
+        "assets": ["products/*.md"],
+        "generatePackageJson": true,
+        "format": ["cjs"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["products/**/*.ts", "products/package.json"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "products/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
