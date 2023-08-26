@@ -5,7 +5,7 @@ pipeline {
             parallel {
                 stage('Main') {
                     when {
-                        branch 'main'
+                        not { branch 'main' }
                     }
                     agent any
                     steps {
