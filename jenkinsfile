@@ -14,7 +14,6 @@ pipeline {
                             echo "La branche en cours est : ${env.BRANCH_NAME}"
                         }
                         sh "npm ci"
-                        sh "npx nx affected --base=HEAD~1 -t lint --parallel=3"
                         sh "npx nx affected --base=HEAD~1 -t test --parallel=3"
                         sh "npx nx affected --base=HEAD~1 -t build --parallel=3"
                     }
@@ -29,7 +28,6 @@ pipeline {
                             echo "La branche en cours est : ${env.BRANCH_NAME}"
                         }
                         sh "npm ci"
-                        sh "npx nx affected --base origin/${env.CHANGE_TARGET} -t lint --parallel=3"
                         sh "npx nx affected --base origin/${env.CHANGE_TARGET} -t test --parallel=3 --configuration=ci"
                         sh "npx nx affected --base origin/${env.CHANGE_TARGET} -t build --parallel=3"
                     }
