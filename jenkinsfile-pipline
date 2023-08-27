@@ -1,1 +1,19 @@
-test
+pipeline {
+    agent any
+    tools { nodejs "node" }
+    stages {
+        stage('Pipeline') {
+                stage('Main') {
+                    agent any
+                    steps {
+                        sh "npm ci"
+                        sh "npx nx affected --base=HEAD~1 -t lint --parallel=3"
+                        sh "npx nx affected --base=HEAD~1 -t test --parallel=3"
+                        sh "npx nx affected --base=HEAD~1 -t build --parallel=3"
+                    }
+                }
+              
+            
+        }
+    }
+}
