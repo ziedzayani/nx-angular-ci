@@ -10,7 +10,7 @@ pipeline {
                     }
                     agent any
                     steps {
-                        echo 'hello world'
+                        echo branch
                         sh "npm ci"
                         sh "npx nx format:check"
                         sh "npx nx affected --base=HEAD~1 -t lint --parallel=3"
